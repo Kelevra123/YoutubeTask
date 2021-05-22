@@ -1,0 +1,154 @@
+{
+  "version": 1,
+  "cli": {
+    "defaultCollection": "@nrwl/angular"
+  },
+  "defaultProject": "toutube",
+  "schematics": {
+    "@nrwl/angular": {
+      "application": {
+        "linter": "eslint"
+      },
+      "library": {
+        "linter": "eslint"
+      },
+      "storybook-configuration": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/angular:application": {
+      "style": "scss",
+      "linter": "eslint",
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "style": "scss",
+      "linter": "eslint",
+      "unitTestRunner": "jest"
+    },
+    "@nrwl/angular:component": {
+      "style": "scss"
+    }
+  },
+  "projects": {
+    "toutube": {
+      "projectType": "application",
+      "root": "apps/toutube",
+      "sourceRoot": "apps/toutube/src",
+      "prefix": "youtube",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/toutube",
+            "index": "apps/toutube/src/index.html",
+            "main": "apps/toutube/src/main.ts",
+            "polyfills": "apps/toutube/src/polyfills.ts",
+            "tsConfig": "apps/toutube/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "apps/toutube/src/favicon.ico",
+              "apps/toutube/src/assets"
+            ],
+            "styles": ["apps/toutube/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "apps/toutube/src/environments/environment.ts",
+                  "with": "apps/toutube/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "toutube:build:production"
+            },
+            "development": {
+              "browserTarget": "toutube:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "toutube:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/toutube/src/**/*.ts",
+              "apps/toutube/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/toutube"],
+          "options": {
+            "jestConfig": "apps/toutube/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "toutube-e2e": {
+      "root": "apps/toutube-e2e",
+      "sourceRoot": "apps/toutube-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/toutube-e2e/cypress.json",
+            "tsConfig": "apps/toutube-e2e/tsconfig.e2e.json",
+            "devServerTarget": "toutube:serve:development"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "toutube:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/toutube-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    }
+  }
+}
