@@ -1,0 +1,9 @@
+<div *ngIf="content === '...'; else number">
+  <button class="product-button__item" style="background:  #790909" [disabled]="true" >
+    <span>...</span>
+  </button>
+</div>
+<ng-template #number> <button class="product-button__item" [class.active]="active === content">
+  <span>{{content}}</span>
+</button></ng-template>
+

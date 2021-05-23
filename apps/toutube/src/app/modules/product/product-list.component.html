@@ -1,0 +1,8 @@
+<div class="product-list__area">
+  <div class="product-list__container">
+    <div class="product-list__row">
+      <div class="product-row" (onAdd)="choseCard($event)" [product]="$products | async" [info]="$info | async"></div>
+    </div>
+  </div>
+</div>
+

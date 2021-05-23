@@ -1,0 +1,14 @@
+<div class="product-row__area">
+  <div class="product-row__card" *ngFor="let prod of page">
+    <div class="product-row__card_content product-card" (click)="getInfo(prod.id, $event)" [product]="prod"></div>
+  </div>
+</div>
+<div class="product-row__container_pagination">
+  <div class="product-row__pagination" *ngFor="let but of pageCount">
+    <div class="product-button" (click)="onNext(but, but)" #button [content]="but" [active]="active"></div>
+  </div>
+</div>
+
+<div *ngIf="chose" (click)="chose = !chose" class="product-view" [info]="info">
+
+</div>

@@ -1,0 +1,18 @@
+{
+  "/api": {
+    "target": "https://www.freetogame.com/api/games",
+    "secure": true,
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/api": ""
+    }
+  },
+  "/game": {
+    "target": "https://www.freetogame.com/api/game?id=",
+    "secure": true,
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/game": ""
+    }
+  }
+}
