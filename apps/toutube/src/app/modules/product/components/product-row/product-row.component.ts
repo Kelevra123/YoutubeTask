@@ -1,6 +1,6 @@
 import {
   ChangeDetectionStrategy,
-  Component, EventEmitter,
+  Component, ElementRef, EventEmitter,
   Input,
   OnChanges,
   OnInit, Output,
@@ -20,7 +20,7 @@ import { ProductService } from "../../product.service";
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProductRowComponent implements OnInit, OnChanges {
-  @ViewChild('button') button
+  @ViewChild('button') button: ElementRef
   @Input() product: ProductBody[] = []
   @Input()info: Product = null
   @Output()onAdd: EventEmitter<number> = new EventEmitter<number>()
@@ -31,8 +31,7 @@ export class ProductRowComponent implements OnInit, OnChanges {
 
   constructor(private readonly _productService: ProductService) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
   ngOnChanges(changes: SimpleChanges): void {
     this.confirmPagination(0)

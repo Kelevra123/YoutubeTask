@@ -25,7 +25,6 @@ export class ProductListComponent implements OnInit {
 
   choseCard(id) {
     this.$info = this._productService.fetchOne(id)
-    console.log('done', id)
     window.scrollTo(0, 0)
   }
 }

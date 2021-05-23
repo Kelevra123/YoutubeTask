@@ -16,7 +16,7 @@ export class ProductService {
     return this._http.get<ProductBody[]>('http://localhost:4200/api')
   }
 
-  public fetchOne(id) {
+  public fetchOne(id): Observable<Product> {
     return this._http.get<Product>(`http://localhost:4200/game` + `${id}`)
   }
 }

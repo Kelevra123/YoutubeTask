@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input,  ViewEncapsulation } from '@angular/core';
+import { ProductBody } from "../../types/types";
 
 
 
@@ -11,5 +12,5 @@ import { ChangeDetectionStrategy, Component, Input,  ViewEncapsulation } from '@
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProductCardComponent {
-  @Input() product: any
+  @Input() product: ProductBody
 }
