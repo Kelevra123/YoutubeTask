@@ -1,7 +1,5 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
-import { ProductService } from "../../product.service";
-import { Product } from "../../types/types";
-import { Observable } from "rxjs";
+import { ChangeDetectionStrategy, Component, Input,  ViewEncapsulation } from '@angular/core';
+
 
 
 
@@ -12,12 +10,6 @@ import { Observable } from "rxjs";
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ProductCardComponent implements OnInit {
+export class ProductCardComponent {
   @Input() product: any
-
-
-  constructor(private readonly _productService: ProductService) { }
-
-  ngOnInit(): void {
-  }
 }

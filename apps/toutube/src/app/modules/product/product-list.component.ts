@@ -16,9 +16,7 @@ export class ProductListComponent implements OnInit {
   public $products: Observable<ProductBody[]> = null;
   public $info: Observable<Product> = null;
 
-  constructor(public _productService: ProductService) {
-
-  }
+  constructor(public _productService: ProductService) { }
 
   ngOnInit(): void {
     this.$products = this._productService.fetch(0, 10)

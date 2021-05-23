@@ -1,13 +1,12 @@
 import {
-  ChangeDetectionStrategy, ChangeDetectorRef,
+  ChangeDetectionStrategy,
   Component,
   Input,
-  OnChanges,
-  OnInit,
-  SimpleChanges,
   ViewEncapsulation
 } from '@angular/core';
 import { Product } from "../../types/types";
+
+
 
 @Component({
   selector: '.product-view',
@@ -16,15 +15,6 @@ import { Product } from "../../types/types";
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ProductViewComponent implements OnInit, OnChanges {
+export class ProductViewComponent {
   @Input() info: Product = null;
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-  }
-
 }
